@@ -1,35 +1,20 @@
 import {Component, created, CustomElement} from "horcrux-core"
-import {inject} from "horcrux-di"
-import AppStore from "../appstore"
+import {Router} from 'horcrux-router';
+
+import MyA from '../a'
+import MyB from '../b'
 
 import "./app.html!"
 @Component
 class MyApp extends CustomElement {
 	
-	@inject(AppStore)
-	private store:AppStore;
+	router = new Router();
 	
-	private hello = 1;
-	
-	private names = [
-		{first:"Foo", last:"Foolington"},
-		{first:"Bar", last:"Barson"}
-	];
-	
-	
-	@created created() {
-		this.store.register(this.onAppStore, this);
+	constructor() {
+		super();
+		this.router.config({url:'a*', component:MyA});
+		this.router.config({url:'b*', component:MyB});
+		this.router.config({url:'*', redirect:'a'});
 	}
 	
-	onAppStore(data:any) {
-		this.hello = this.hello + 1;
-	}
-	
-	trigger() {
-		this.hello = this.hello + 1;
-	}
-	
-	set(value) {
-		this.hello = value;
-	}
 }
