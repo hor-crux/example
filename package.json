@@ -15,7 +15,6 @@
     "typescript": "^1.6.0-dev.20150909"
   },
   "jspm": {
-    "directories": {},
     "dependencies": {
       "horcrux": "github:hor-crux/horcrux@master",
       "horcrux-core": "github:hor-crux/horcrux-core@master",
